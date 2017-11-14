@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.haruka</groupId>
+  <artifactId>compressfilebytearraydemo</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>compressfilebytearraydemo</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<java.version>1.8</java.version>
+  </properties>
+	
+  <dependencies>
+  		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-compress</artifactId>
+		    <version>1.15</version>
+		</dependency>
+  </dependencies>
+  
+	<build>
+		<plugins>
+			 <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-jar-plugin</artifactId>
+		        <version>3.0.2</version>
+			        <configuration>
+			      <archive>
+			        <manifest>
+			          <addClasspath>true</addClasspath>
+			          <mainClass>com.haruka.compressfilebytearraydemo.App</mainClass>
+			        </manifest>
+			      </archive>
+			    </configuration>
+		      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			 <plugin>
+		       <groupId>org.codehaus.mojo</groupId>
+				  <artifactId>exec-maven-plugin</artifactId>
+				  <version>1.6.0</version>
+				  <executions>
+				    <execution>
+				      <goals>
+				        <goal>java</goal>
+				      </goals>
+				    </execution>
+				  </executions>
+				  <configuration>
+				    <mainClass>com.haruka.compressfilebytearraydemo.App</mainClass>
+		  		</configuration>
+		    </plugin>
+		</plugins>
+	</build>
+</project>

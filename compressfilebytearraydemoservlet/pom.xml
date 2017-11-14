@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.haruka</groupId>
+  <artifactId>compressfilebytearraydemoservlet</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>compressfilebytearraydemoservlet Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+   <properties>
+		<java.version>1.8</java.version>
+   </properties>
+  
+  <dependencies>
+	  	<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+  	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-compress</artifactId>
+		    <version>1.15</version>
+		</dependency>
+  </dependencies>
+  <build>
+    <finalName>compressfilebytearraydemoservlet</finalName>
+    <resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+				    <artifactId>jetty-maven-plugin</artifactId>
+				    <version>9.4.7.v20170914</version>
+                   <configuration>
+                       <jvmArgs>-Xmx -Xms -XX:PermSize=512 -XX:MaxPermSize=1024</jvmArgs>
+                        <scanIntervalSeconds>10</scanIntervalSeconds>
+                        <jettyXml>${basedir}/src/main/resources/jetty-http.xml</jettyXml>
+                   </configuration>
+               </plugin>
+		</plugins>
+  </build>
+</project>

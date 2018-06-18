@@ -1,0 +1,57 @@
+SERVICE_NAME="XXX1"
+echo "This is script for $SERVICE_NAME Service"
+
+RUNCOMMAND="java -jar jarforshell.jar"
+PIDFILE="xxx.pid"
+LOGFILE="jarforshell.log"
+
+start(){
+	
+	if [ ! -f $PIDFILE ]; then
+		echo "Starting $SERVICE_NAME Service.."	
+		nohup $RUNCOMMAND >> $LOGFILE &
+		echo $! > $PIDFILE
+		echo "Service $SERVICE_NAME is started"
+	else
+		echo "$SERVICE_NAME is already running ..."
+	fi
+}
+
+stop(){
+	if [ -f $PIDFILE ]; then
+		echo "Stopping $SERVICE_NAME Service.."	
+		PID=$(cat $PIDFILE)
+		kill $PID;		
+		echo "Service $SERVICE_NAME is stopped"
+		rm $PIDFILE
+	else
+		echo "$SERVICE_NAME is not running ..."
+	fi
+}
+
+status(){
+	if [ ! -f $PIDFILE ]; then
+		echo "$SERVICE_NAME is not running ..."
+	else
+		PID=$(cat $PIDFILE)
+		echo "Service $SERVICE_NAME is running on $PID"
+	fi
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    status
+    ;;
+  restart)
+    stop
+    start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|status|restart}"
+esac
